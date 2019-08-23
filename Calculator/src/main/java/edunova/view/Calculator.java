@@ -10,6 +10,9 @@ package edunova.view;
  * @author Jelena
  */
 public class Calculator extends javax.swing.JFrame {
+    
+    private int firstNumber;
+    private String operation;
 
     /**
      * Creates new form Calculator
@@ -42,8 +45,12 @@ public class Calculator extends javax.swing.JFrame {
         btnClearEntry = new javax.swing.JButton();
         btnPlus = new javax.swing.JButton();
         lblResult = new javax.swing.JLabel();
+        btnMinus = new javax.swing.JButton();
+        btnMultiply = new javax.swing.JButton();
+        btnDivision = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Calculator");
 
         btn1.setText("1");
         btn1.addActionListener(new java.awt.event.ActionListener() {
@@ -147,6 +154,27 @@ public class Calculator extends javax.swing.JFrame {
         lblResult.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblResult.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
+        btnMinus.setText("-");
+        btnMinus.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMinusActionPerformed(evt);
+            }
+        });
+
+        btnMultiply.setText("*");
+        btnMultiply.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMultiplyActionPerformed(evt);
+            }
+        });
+
+        btnDivision.setText("/");
+        btnDivision.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDivisionActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -154,44 +182,51 @@ public class Calculator extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(btn1)
-                        .addGap(18, 18, 18)
-                        .addComponent(btn2)
-                        .addGap(18, 18, 18)
-                        .addComponent(btn3)
-                        .addGap(37, 37, 37))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(btn0)
-                                .addGap(18, 18, 18)
-                                .addComponent(btnEqual)
-                                .addGap(18, 18, 18)
-                                .addComponent(btnPlus))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(btn4)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(btn5))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(btn7)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(btn8)))
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(btn9)
-                                    .addComponent(btn6))))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btnReset)
                         .addGap(18, 18, 18)
                         .addComponent(btnClearEntry)
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(lblResult, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblResult, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(btn1)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(btn2)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(btn3)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(btnDivision))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(btn0)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(btnEqual)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(btnPlus))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addComponent(btn4)
+                                                .addGap(18, 18, 18)
+                                                .addComponent(btn5))
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addComponent(btn7)
+                                                .addGap(18, 18, 18)
+                                                .addComponent(btn8)))
+                                        .addGap(18, 18, 18)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addComponent(btn9)
+                                                .addGap(18, 18, 18)
+                                                .addComponent(btnMinus))
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addComponent(btn6)
+                                                .addGap(18, 18, 18)
+                                                .addComponent(btnMultiply)))))
+                                .addGap(24, 24, 24)))
                         .addContainerGap())))
         );
         layout.setVerticalGroup(
@@ -207,17 +242,20 @@ public class Calculator extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn7)
                     .addComponent(btn8)
-                    .addComponent(btn9))
+                    .addComponent(btn9)
+                    .addComponent(btnMinus))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn4)
                     .addComponent(btn5)
-                    .addComponent(btn6))
+                    .addComponent(btn6)
+                    .addComponent(btnMultiply))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn1)
                     .addComponent(btn3)
-                    .addComponent(btn2))
+                    .addComponent(btn2)
+                    .addComponent(btnDivision))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn0)
@@ -238,11 +276,20 @@ public class Calculator extends javax.swing.JFrame {
     }//GEN-LAST:event_btn8ActionPerformed
 
     private void btn0ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn0ActionPerformed
-       addNumber("0");
+        addNumber("0");
     }//GEN-LAST:event_btn0ActionPerformed
 
     private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
-        // TODO add your handling code here:
+        String inside = lblResult.getText();
+        if (inside.length() == 1) {
+            lblResult.setText("0");
+            return;
+        }
+        System.out.println(inside);
+        System.out.println(inside.length());
+        System.out.println(inside.length() - 1);
+        System.out.println(inside.substring(0, inside.length() - 1));
+        lblResult.setText(inside.substring(0, inside.length() - 1));
     }//GEN-LAST:event_btnResetActionPerformed
 
     private void btn9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn9ActionPerformed
@@ -250,23 +297,41 @@ public class Calculator extends javax.swing.JFrame {
     }//GEN-LAST:event_btn9ActionPerformed
 
     private void btnEqualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEqualActionPerformed
-        // TODO add your handling code here:
+        int secondNumber = Integer.parseInt(lblResult.getText());
+        if (operation.equals("+")) {
+            lblResult.setText("" + (firstNumber + secondNumber));
+        }
+        if (operation.equals("-")) {
+            lblResult.setText("" + (firstNumber - secondNumber));
+        }
+        if (operation.equals("/")) {
+            lblResult.setText("" + (firstNumber / secondNumber));
+        }
+        if (operation.equals("*")) {
+                lblResult.setText("" + (firstNumber * secondNumber));
+            }
+        
+        
     }//GEN-LAST:event_btnEqualActionPerformed
 
     private void btnClearEntryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearEntryActionPerformed
-        // TODO add your handling code here:
+       
+        
+
     }//GEN-LAST:event_btnClearEntryActionPerformed
 
     private void btnPlusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPlusActionPerformed
-        // TODO add your handling code here:
+        firstNumber = Integer.parseInt(lblResult.getText());
+        lblResult.setText("");
+        operation = "+";
     }//GEN-LAST:event_btnPlusActionPerformed
 
     private void btn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn1ActionPerformed
-       addNumber("1");
+        addNumber("1");
     }//GEN-LAST:event_btn1ActionPerformed
 
     private void btn2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn2ActionPerformed
-      addNumber("2");
+        addNumber("2");
     }//GEN-LAST:event_btn2ActionPerformed
 
     private void btn4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn4ActionPerformed
@@ -278,13 +343,31 @@ public class Calculator extends javax.swing.JFrame {
     }//GEN-LAST:event_btn5ActionPerformed
 
     private void btn6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn6ActionPerformed
-       addNumber("6");
+        addNumber("6");
     }//GEN-LAST:event_btn6ActionPerformed
 
     private void btn7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn7ActionPerformed
-       addNumber("7");
+        addNumber("7");
     }//GEN-LAST:event_btn7ActionPerformed
 
+    private void btnMinusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMinusActionPerformed
+        firstNumber = Integer.parseInt(lblResult.getText());
+        lblResult.setText("");
+        operation = "-";
+    }//GEN-LAST:event_btnMinusActionPerformed
+
+    private void btnMultiplyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMultiplyActionPerformed
+        firstNumber = Integer.parseInt(lblResult.getText());
+        lblResult.setText("");
+        operation = "*";
+    }//GEN-LAST:event_btnMultiplyActionPerformed
+
+    private void btnDivisionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDivisionActionPerformed
+        firstNumber = Integer.parseInt(lblResult.getText());
+        lblResult.setText("");
+        operation = "/";
+    }//GEN-LAST:event_btnDivisionActionPerformed
+    
     private void addNumber(String number) {
         String inside = lblResult.getText();
         if (inside.length() == 5) {
@@ -305,7 +388,10 @@ public class Calculator extends javax.swing.JFrame {
     private javax.swing.JButton btn8;
     private javax.swing.JButton btn9;
     private javax.swing.JButton btnClearEntry;
+    private javax.swing.JButton btnDivision;
     private javax.swing.JButton btnEqual;
+    private javax.swing.JButton btnMinus;
+    private javax.swing.JButton btnMultiply;
     private javax.swing.JButton btnPlus;
     private javax.swing.JButton btnReset;
     private javax.swing.JLabel lblResult;
