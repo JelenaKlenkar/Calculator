@@ -281,7 +281,7 @@ public class Calculator extends javax.swing.JFrame {
 
     private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
         String inside = lblResult.getText();
-        if (inside.length() == 1) {
+        if (inside.length()>0) {
             lblResult.setText("0");
             return;
         }
@@ -315,7 +315,16 @@ public class Calculator extends javax.swing.JFrame {
     }//GEN-LAST:event_btnEqualActionPerformed
 
     private void btnClearEntryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearEntryActionPerformed
-       
+        String inside = lblResult.getText();
+        if (inside.length() == 1) {
+            lblResult.setText("0");
+            return;
+        }
+        System.out.println(inside);
+        System.out.println(inside.length());
+        System.out.println(inside.length() - 1);
+        System.out.println(inside.substring(0, inside.length() - 1));
+        lblResult.setText(inside.substring(0, inside.length() - 1));
         
 
     }//GEN-LAST:event_btnClearEntryActionPerformed
